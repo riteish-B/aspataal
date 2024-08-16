@@ -1,5 +1,7 @@
 package patientService
 
+import "strings"
+
 var Patients []Patient = []Patient{};
 
 func addPatient(Patient Patient){
@@ -23,4 +25,14 @@ func findPatientById(id string) Patient {
 		}
 	}
 	return Patient{}
+}
+
+func getPatientsForName(patientName string) []Patient {
+	var patients []Patient
+	for _, v := range Patients {
+		if strings.Contains(v.Name, patientName) {
+			patients = append(patients, v)
+		}
+	}
+	return patients
 }

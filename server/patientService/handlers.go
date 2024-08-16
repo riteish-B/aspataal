@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/go-playground/validator/v10"
 	"github.com/google/uuid"
 )
@@ -39,7 +40,7 @@ func CreatePatientHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetPatientHandler(w http.ResponseWriter, r *http.Request) {
-	var patientId = r.URL.Query().Get("id");
+	var patientId = chi.URLParam(r, "patientId")	
 
 	patient := findPatientById(patientId)
 	if patient.ID == "" {
@@ -48,6 +49,33 @@ func GetPatientHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
-    w.WriteHeader(http.StatusCreated)
+    w.WriteHeader(http.StatusOK)
     json.NewEncoder(w).Encode(patient)
 }
+
+func SearchPatientsHandler(w http.ResponseWriter, r *http.Request) {
+	var patientName = chi.URLParam(r, "patientName")
+
+	patients := getPatientsForName(patientName)
+	if len(patients) == 0 {
+		w.WriteHeader(http.StatusNotFound)
+		fmt.Fprintf(w, "Patient not found")
+		return
+	}
+	print("total number of patients: ", len(patients))
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(patients)
+}
+
+func DeletePatientHandler(w http.ResponseWriter, r *http.Request) {
+	var patientId = chi.URLParam(r, "patientId")		
+	patient := findPatientById(patientId)
+	if patient.ID == "" {
+		w.WriteHeader(http.StatusNotFound)
+		fmt.Fprintf(w, "Patient not found")
+		return
+	}
+	deletePatient(patient)
+	w.WriteHeader(http.StatusNoContent)
+}	
