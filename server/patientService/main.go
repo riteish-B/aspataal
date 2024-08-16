@@ -7,10 +7,19 @@ import (
 
 type PatientService struct{}
 
+type Insurance struct {
+	ID   string `json:"id"`
+	Name string `json:"name" validate:"required"`
+	Company string `json:"company" validate:"required"`	
+	Group string `json:"group" validate:"required"`
+}
+
 type Patient struct {
 	ID   string `json:"id"`
 	Name string `json:"name" validate:"required"`
 	Address string `json:"address" validate:"required"`
+	Insurance Insurance `json:"insurance" validate:"required"`
+	Contact string `json:"contact" validate:"required"`
 }
 
 func New() *chi.Mux {

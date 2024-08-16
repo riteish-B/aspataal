@@ -15,6 +15,6 @@ func main() {
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome"))
 	})
-	r.Mount("/patients", patientService.New())
+	r.Mount("/api/patients", patientService.New())
 	http.ListenAndServe(port, r)
 }	
