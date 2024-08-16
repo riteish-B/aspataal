@@ -5,7 +5,7 @@ type PatientsPropType = {
 };
 export default function Patients(props: PatientsPropType) {
   return (
-    <div className="flex flex-col justify-center items-center w-full border border-solid p-2 m-2 bg-slate-800 text-white">
+    <div className="flex flex-col items-center w-full h-full p-2">
       <h1 className="text-3xl">Patients List</h1>
       {props.patients.map((patient: Patient) => (
         <div
