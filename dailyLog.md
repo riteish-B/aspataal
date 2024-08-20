@@ -16,3 +16,8 @@ This file consists the log of project progression over multiple days highlightin
 - Setup React Application using React Router, TailwindCss, and NextUI
 - Basic UI to search for a patient
 - Ability to view details about a patient
+
+### Day 3 and 4
+
+- Added form to create a new patient entry
+- Tweaks on the UI to make it more user friendly
