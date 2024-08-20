@@ -36,7 +36,7 @@ func CreatePatientHandler(w http.ResponseWriter, r *http.Request) {
 	addPatient(patient)
 
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "Patient Created %s", patient.ID)
+    json.NewEncoder(w).Encode(patient)
 }
 
 func GetPatientHandler(w http.ResponseWriter, r *http.Request) {

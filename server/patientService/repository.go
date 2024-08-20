@@ -6,7 +6,6 @@ var Patients []Patient = []Patient{};
 
 func addPatient(Patient Patient){
 	Patients = append(Patients, Patient);
-	println("Patient Added: ", Patient.Name)
 }
 
 func deletePatient(Patient Patient){

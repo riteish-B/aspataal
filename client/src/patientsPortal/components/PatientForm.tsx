@@ -24,9 +24,11 @@ export default function PatientForm() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    setLoading(false);
-    setPatient(getBasePatient());
-  }, [success, error]);
+    setTimeout(() => {
+      setError(false);
+      setSuccess(false);
+    }, 2000);
+  }, [error, success]);
 
   const handleChange = (e: any) => {
     if (e.target.id.includes("insurance")) {
@@ -51,6 +53,9 @@ export default function PatientForm() {
     } catch (error) {
       console.error(error);
       setError(true);
+    } finally {
+      setLoading(false);
+      setPatient(getBasePatient());
     }
   };
 

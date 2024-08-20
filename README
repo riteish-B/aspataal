@@ -2,6 +2,22 @@
 
 ### Description
 
-### Design
+This project aims to provide patient management system which allows for hospitals and clinics to onboard a new patient, update their details, add prescriptions, record their visits and any notes for each visit.
+
+### Whats Implemented
 
 ### Local Development
+
+Run the following make commands to run both the server and client locally:
+
+- Server
+
+```
+make server_run
+```
+
+- Client
+
+```
+make client_run
+```

@@ -1,4 +1,4 @@
-import { Button, Input, Spinner } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import { useState } from "react";
 import { Patient } from "../types/types";
 import { getPatientsForName } from "../api";
@@ -39,6 +39,7 @@ export default function PatientsHome() {
               placeholder="Search Patient"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
             <Button
               color="secondary"
