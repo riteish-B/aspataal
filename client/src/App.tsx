@@ -1,6 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import PatientsHome from "./patientsPortal/PatientsHome";
-import HomePage from "./home/HomePage";
 import Layout from "./Layout";
 import PatientDetail from "./patientsPortal/PatientDetail";
 
@@ -11,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <PatientsHome />,
       },
       {
         path: "patients",
@@ -22,6 +25,12 @@ const router = createBrowserRouter([
         element: <PatientDetail />,
       },
     ],
+  },
+  {
+    path: "",
+    action: () => {
+      return redirect("/");
+    },
   },
 ]);
 export default function App() {

@@ -24,7 +24,7 @@ export default function PatientsHome() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row lg:gap-2 justify-center lg:items-start items-center">
+      <div className="flex flex-col lg:flex-row lg:gap-2 justify-center lg:items-start items-center p-2">
         {patients.length == 0 && (
           <div
             className="flex flex-col

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { getPatientById } from "../api";
 import { Patient } from "../types/types";
-import { Accordion, AccordionItem, Spinner } from "@nextui-org/react";
+import { Accordion, AccordionItem, Spinner, Link } from "@nextui-org/react";
+import {} from "react-router-dom";
 
 export default function PatientDetail() {
   const patientId = window.location.pathname.split("/")[2];
   const [patient, setPatient] = useState<Patient>({} as Patient);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     setLoading(true);
     async function getPatient(patientId: String) {
@@ -25,18 +27,13 @@ export default function PatientDetail() {
   return (
     <div className="my-2">
       {loading && (
-        <p>
+        <div>
           <Spinner color="secondary" />
-        </p>
+        </div>
       )}
       {!loading && patient.name && (
         <div>
-          <p
-            className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-            onClick={() => window.history.back()}
-          >
-            Go back
-          </p>
+          <Link href="/">Go back</Link>
           <Accordion
             variant="light"
             selectionMode="multiple"
