@@ -12,6 +12,8 @@ func main() {
 	port := ":3000"
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	fs := http.FileServer(http.Dir("public"))
+	r.Handle("/ui/*", http.StripPrefix("/ui/", fs))
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome"))
 	})

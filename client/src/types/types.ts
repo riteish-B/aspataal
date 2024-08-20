@@ -5,7 +5,7 @@ export interface Insurance {
   group: string;
 }
 export interface Patient {
-  id: string;
+  id?: string;
   name: string;
   contact: string;
   address: string;

@@ -1,10 +1,4 @@
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-} from "@nextui-org/react";
+import { Navbar, NavbarBrand } from "@nextui-org/react";
 import { Outlet } from "react-router-dom";
 
 export default function Layout() {

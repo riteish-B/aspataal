@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPatientById } from "../api";
 import { Patient } from "../types/types";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import { Accordion, AccordionItem, Spinner } from "@nextui-org/react";
 
 export default function PatientDetail() {
   const patientId = window.location.pathname.split("/")[2];
@@ -24,9 +24,19 @@ export default function PatientDetail() {
   }, []);
   return (
     <div className="my-2">
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <p>
+          <Spinner color="secondary" />
+        </p>
+      )}
       {!loading && patient.name && (
         <div>
+          <p
+            className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+            onClick={() => window.history.back()}
+          >
+            Go back
+          </p>
           <Accordion
             variant="light"
             selectionMode="multiple"
