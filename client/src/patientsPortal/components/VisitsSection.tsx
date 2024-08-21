@@ -7,7 +7,11 @@ import PatientVisitForm from "./PatientVisitForm";
 export default function VisitsSection({ patientId }: { patientId: string }) {
   const [visits, setVisits] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const onOpenChange = (isOpen: boolean) => setIsOpen(isOpen);
+  const [refresh, setRefresh] = useState(false);
+  const onOpenChange = (isOpen: boolean) => {
+    setRefresh(!refresh);
+    setIsOpen(isOpen);
+  };
 
   useEffect(() => {
     async function getVisits() {
@@ -19,7 +23,7 @@ export default function VisitsSection({ patientId }: { patientId: string }) {
       }
     }
     getVisits();
-  }, []);
+  }, [refresh]);
   return (
     <div>
       <div className="flex flex-col gap-2 w-full p-2 rounded justify-center">

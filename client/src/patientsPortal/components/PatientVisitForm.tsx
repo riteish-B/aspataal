@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { Visit } from "../../types/types";
 import { addVisitForPatient } from "../../api";
+import AlertButton from "./AlertButton";
 
 export default function PatientVisitForm({ patientId }: { patientId: string }) {
   const [visit, setVisit] = useState<Visit>({
@@ -95,12 +96,7 @@ export default function PatientVisitForm({ patientId }: { patientId: string }) {
           <span className="font-medium">
             Error Adding Visit for Patient. Please Try Again.
           </span>
-          <div
-            className="font-medium text-lg cursor-pointer w-10 border border-solid border-slate-700 rounded flex justify-center"
-            onClick={() => setError(false)}
-          >
-            X
-          </div>
+          <AlertButton onClick={() => setError(false)} />
         </div>
       )}
       {success && (
@@ -111,6 +107,7 @@ export default function PatientVisitForm({ patientId }: { patientId: string }) {
           <span className="font-medium">
             Visit For Patient Added Successfully!!
           </span>
+          <AlertButton onClick={() => setSuccess(false)} />
         </div>
       )}
     </div>
