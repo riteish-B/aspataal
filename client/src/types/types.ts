@@ -11,3 +11,12 @@ export interface Patient {
   address: string;
   insurance: Insurance;
 }
+
+export interface Visit {
+  id?: string;
+  date: string;
+  notes: string;
+  summary: string;
+  doctor: string;
+  patientId: string;
+}

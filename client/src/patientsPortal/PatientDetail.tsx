@@ -3,6 +3,7 @@ import { getPatientById } from "../api";
 import { Patient } from "../types/types";
 import { Accordion, AccordionItem, Spinner, Link } from "@nextui-org/react";
 import {} from "react-router-dom";
+import VisitsSection from "./components/VisitsSection";
 
 export default function PatientDetail() {
   const patientId = window.location.pathname.split("/")[2];
@@ -68,11 +69,9 @@ export default function PatientDetail() {
               aria-label="Prescriptions"
               title="Prescriptions"
             ></AccordionItem>
-            <AccordionItem
-              key="5"
-              aria-label="Visits"
-              title="Visits"
-            ></AccordionItem>
+            <AccordionItem key="5" aria-label="Visits" title="Visits">
+              <VisitsSection patientId={patientId} />
+            </AccordionItem>
             <AccordionItem
               key="6"
               aria-label="Appointments"
