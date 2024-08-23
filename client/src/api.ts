@@ -1,60 +1,43 @@
-import { Patient } from "./types/types";
+import { Patient, Visit } from "./types/types";
 
 export const getPatientsForName = async (name: String) => {
   const url = `/api/patients/search/${name}`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch patients with name ${name}`);
-  }
-  return await response.json();
+  return await makeApiCall(url, "GET", null);
 };
 
 export const getPatientById = async (id: String) => {
   const url = `/api/patients/${id}`;
-  const response = await fetch(url, { cache: "no-store" });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch patient with id ${id}`);
-  }
-  return await response.json();
+  return await makeApiCall(url, "GET", null);
 };
 
 export const createPatient = async (patient: Patient) => {
-  const response = await fetch(`/api/patients`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(patient),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to create patient`);
-  }
-
-  return await response.json();
+  const url = `/api/patients`;
+  return await makeApiCall(url, "POST", patient);
 };
 
 export const getVisitsForPatient = async (patientId: String) => {
   const url = `/api/visits/${patientId}`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    const error = new Error(`Failed to fetch visits for patient ${patientId}`);
-    throw error;
-  }
-  const data = await response.json();
-  return data;
+  return await makeApiCall(url, "GET", null);
 };
 
-export const addVisitForPatient = async (visit: any) => {
-  const response = await fetch(`/api/visits`, {
-    method: "POST",
+export const addVisitForPatient = async (visit: Visit) => {
+  const url = `/api/visits`;
+  return await makeApiCall(url, "POST", visit);
+};
+
+const makeApiCall = async (url: string, method: string, data: unknown) => {
+  const body = data ? JSON.stringify(data) : null;
+  const requestOptions: Request = new Request(url, {
+    method: method,
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(visit),
+    body: body,
   });
+
+  const response = await fetch(requestOptions);
+
   if (!response.ok) {
-    const error = new Error(
-      `Failed to add visit for patient ${visit.patientId}`
-    );
+    const error = new Error(`Failed to ${method} ${url}`);
     throw error;
-  } else {
-    return await response.json();
   }
+  return await response.json();
 };

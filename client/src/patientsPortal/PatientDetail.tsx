@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { getPatientById } from "../api";
 import { Patient } from "../types/types";
-import { Accordion, AccordionItem, Spinner, Link } from "@nextui-org/react";
-import {} from "react-router-dom";
+import { Accordion, AccordionItem, Spinner } from "@nextui-org/react";
+import { Link, useNavigate } from "react-router-dom";
 import VisitsSection from "./components/VisitsSection";
 
 export default function PatientDetail() {
@@ -34,7 +34,9 @@ export default function PatientDetail() {
       )}
       {!loading && patient.name && (
         <div>
-          <Link href="/">Go back</Link>
+          <Link className="text-blue-500" to="/">
+            Go Back
+          </Link>
           <Accordion
             variant="light"
             selectionMode="multiple"

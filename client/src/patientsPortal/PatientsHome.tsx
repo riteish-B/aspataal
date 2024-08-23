@@ -56,7 +56,9 @@ export default function PatientsHome() {
         )}
 
         {patients.length == 0 && <PatientForm />}
-        {patients.length > 0 && <Patients patients={patients} />}
+        {patients.length > 0 && (
+          <Patients patients={patients} onClose={() => setPatients([])} />
+        )}
       </div>
     </>
   );

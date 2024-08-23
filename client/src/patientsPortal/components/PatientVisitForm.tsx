@@ -1,12 +1,5 @@
-import {
-  Button,
-  CheckboxIcon,
-  DatePicker,
-  DateValue,
-  Input,
-  Textarea,
-} from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { Button, Input, Textarea } from "@nextui-org/react";
+import { useState } from "react";
 import { Visit } from "../../types/types";
 import { addVisitForPatient } from "../../api";
 import AlertButton from "./AlertButton";
@@ -101,7 +94,7 @@ export default function PatientVisitForm({ patientId }: { patientId: string }) {
       )}
       {success && (
         <div
-          className="p-4 text-lg text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+          className="p-4 text-lg text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 flex justify-between"
           role="alert"
         >
           <span className="font-medium">

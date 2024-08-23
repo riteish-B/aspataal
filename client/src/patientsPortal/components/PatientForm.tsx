@@ -145,28 +145,25 @@ export default function PatientForm() {
         >
           Add new Patient
         </Button>
+        {error && !loading && (
+          <div
+            className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert"
+          >
+            <span className="font-medium">
+              Error Adding Patient, please try again.
+            </span>
+          </div>
+        )}
+        {success && !loading && (
+          <div
+            className="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+            role="alert"
+          >
+            <span className="font-medium">Patient Added Successfully!</span>
+          </div>
+        )}
       </div>
-      {error && !loading && (
-        <div
-          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-          role="alert"
-        >
-          <span className="font-medium">
-            Error Adding Patient, please try again.
-          </span>
-          <span className="font-medium">
-            <CheckboxIcon />
-          </span>
-        </div>
-      )}
-      {success && !loading && (
-        <div
-          className="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
-          role="alert"
-        >
-          <span className="font-medium">Patient Added Successfully!</span>
-        </div>
-      )}
     </>
   );
 }
